@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <a href="/karfa"><img class="karfa" src="/static/karfa.jpg"></a>
+        - smeltu á 'körfuna til að sjá valdar vörur.'
+        {% if 'karfa' in session: %}
+            <span> ( {{ fjoldi }})</span>
+        {% else %}
+            <span> ( 0 )</span>
+        {% endif %}
+    
+    {% block content %} {% endblock %}
+    
+    {% include "fotur.tpl" ignore missing %}
+</body>
+</html>
