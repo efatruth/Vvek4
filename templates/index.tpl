@@ -6,11 +6,11 @@
 {% block content %}
     <h1> Vörurlistinn</h1>
     <section class="wrapper">
-    {% for item in vorur %}
+    {% for i in v %}
         <div class="vara">
-            <h2>{{ item[1] }}</h2>
-            <img src="/static/{{ item[2] }}">
-            <h3>Verð: <a href="/add/{{ item[0] }}">{{ item[3] }}</a></h3>
+            <h2>{{ i[1] }}</h2>
+            <img src="/static/{{i[2]}}">
+            <h3>Verð: <a href="/add/{{i[0]}}">{{i[3]}}</a></h3>
         </div>
     {% endfor %}
     </section>
