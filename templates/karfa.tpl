@@ -22,7 +22,7 @@
             </tr>
         {% for i in k %}
             <tr>
-                <td><a href="/eydavoru/{{ i[0] }}">{{i[1]}}</a> </td>
+                <td><a href="/eydavoru/{{ i[0] }}">{{ i[1] }}</a> </td>
                 <td><b> {{ i[3] }} </b></td>
             </tr>
         {% endfor %}
@@ -42,7 +42,7 @@
             <input type="email" name='email' required placeholder="e-mail">
         </label>
         <label>Símanúmer:
-            <input type="text" name='simi' required pattern="^(\354)?\d{3}[ -]?\d{4}$" placeholder="">
+            <input type="text" name='simi' required pattern="^(\354 )?\d{3}[ -]?\d{4}$" placeholder="">
         </label>
         <input type="hidden" name='samtals' value='{{ samtals }}'>
         <input type='submit' value='kaupa vörur'>

@@ -15,7 +15,7 @@
                 <td>Símanúmer: </td><th>{{phone}}</th>
             </tr>
             <tr>
-                <th>Heildarverð: </th><td>{{price}}</td>
+                <th>Heildarverð</th><td>{{price}}</td>
             </tr>
             <tr>
                 <td><a href='/karfa' class="butt">Aftur í körfuna</a></td>

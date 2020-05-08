@@ -10,5 +10,5 @@
 {% endblock %}
 
 {% block content %}
-    <h2> Vöru í körfu hefur verið eytt...<h2>
+    <h1> Vöru í körfu hefur verið eytt...<h1>
 {% endblock %}

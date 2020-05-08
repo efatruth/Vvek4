@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Vefverslun - vöru eytt
+    Vefverslun - körfu eytt
 {% endblock %}
 
 {% block refresh %}
@@ -10,5 +10,5 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Körfu hefur verið eytt...<h1>
+    <h1> körfu hefur verið eytt...<h1>
 {% endblock %}

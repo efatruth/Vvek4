@@ -1,36 +1,35 @@
 import os
-from flask import Flask, render_template, session, url_for, request, redirect, escape 
+from flask import Flask, render_template, session, url_for, request, redirect 
 app = Flask(__name__)
 
-app.secret_key = os.random(8)
-print(os.urandon(8))
+app.secret_key = os.urandom(8)
+print(os.urandom(8))
 
 #database listi
-vorur = [
-    [0, "Peysa", "peysa.jpg",2500],
-    [1, "Skór", "skor.jpg",3500],
-    [2, "Buxur", "buxur.jpg",4500],
-    [3, "Tefíll", "trefill.jpg",1500],
-    [4, "Jakki", "jakki.jpg",13500],
-    [5, "Húfa", "hufa.jpg",3550]
-]
+vorur = [   [0,"Peysa","peysa.jpg",2500],
+            [1,"Skór","skor.jpg",3500],
+            [2,"Buxur","buxur.jpg",4500],
+            [3,"Tefíll","trefill.jpg",1500],
+            [4,"Jakki","jakki.jpg",13500],
+            [5,"Húfa","hufa.jpg",3550]
+        ]
 
 
 
 #Rót
-@app.route('/')
+@app.route("/")
 def index():
     karfa = []
     fjoldi=0
     if 'karfa' in session:
         karfa = session['karfa']
         fjoldi = len(karfa)
-    return render_template('index.tpl', v=vorur, fjoldi=fjoldi)
+    return render_template("index.tpl", v=vorur, fjoldi=fjoldi)
 
 
 
 #add - bætum vöru í körfu. session  hluturinn 'karfa' geymir lista af lista.
-@app.route('/add/<int:id>')
+@app.route("/add/<int:id>")
 def frett(id):
     karfa = []
     fjoldi=0
@@ -45,13 +44,13 @@ def frett(id):
         session['karfa'] = karfa
         fjoldi = len(karfa)
 
-    return render_template('index.html', v=vorur, fjoldi=fjoldi)
+    return render_template('index.tpl', v=vorur, fjoldi=fjoldi)
 
 
 
 
 #skoðum körfuna 
-@app.route('/karfa')
+@app.route("/karfa")
 def karfa():
     karfa = []
     summa=0
@@ -61,17 +60,17 @@ def karfa():
         fjoldi = len(karfa) # fjöldi vara í körfu
         for i in karfa: #reiknum út heildarverd körfu, sendum niður í template
             summa += int(i[3])
-        return render_template('karfa.tpl', k=karfa, tom=False, fjoldi=fjoldi, samtals=summa)
+        return render_template("karfa.tpl", k = karfa, tom = False, fjoldi=fjoldi, samtals=summa)
     #karfan er tóm
     else:
-        return render_template('karfa.tpl', k=karfa, tom=True,)
+        return render_template("karfa.tpl", k = karfa, tom = True)
 
 
 
 
 
 #Eyðum einni vöru úr körfunni, okkur svo hent yfir í /körfuna (refresh) 
-@app.route('/eydavoru/<int:id>')
+@app.route("/eydavoru/<int:id>")
 def eydavoru(id):
     karfa = []
     karfa = session['karfa']
@@ -86,7 +85,7 @@ def eydavoru(id):
 
 
 #Eyðum allir körfunni, okkur svo hent yfir á rót (refresh) frá eyd.tpl 
-@app.route('/eyda')
+@app.route("/eyda")
 def eyda():
     session.pop('karfa', None)
     return render_template("eyda.tpl")
@@ -94,7 +93,7 @@ def eyda():
 
 
 #Upplýsingar sem sendar eru úr formi í result.tpl
-@app.route('/result', method = ['POST'])
+@app.route('/result', methods = ['POST'])
 def result():
     if request.method == 'POST':
         kwargs={
@@ -103,7 +102,7 @@ def result():
             'phone': request.form['simi'],
             'price': request.form['samtals'],
         }
-        return render_template('results.tpl',**kwargs)
+        return render_template('result.tpl',**kwargs)
 
 
 
